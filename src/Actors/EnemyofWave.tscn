@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Actors/EnemyofWave.gd" type="Script" id=2]
+[ext_resource path="res://assets/art/enemies/enemy_idle_0.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/enemies/enemy_idle_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/enemies/enemy_idle_3.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/enemies/enemy_idle_2.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "moving",
+"speed": 15.0
+} ]
+
+[node name="EnemyofWave" instance=ExtResource( 1 )]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" parent="." index="0"]
+frames = SubResource( 1 )
+frame = 1
+
+[node name="Lifetime" type="Timer" parent="." index="4"]
+one_shot = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

@@ -1,0 +1,271 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/Main/Main.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio/music/music.mp3" type="AudioStream" id=4]
+[ext_resource path="res://src/UI/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Actors/EnemyofWave.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/art/background/darkPurple.png" type="Texture" id=7]
+[ext_resource path="res://src/Props/Asteroid_2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Props/Asteroid_3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Props/Asteroid_1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Props/Asteroid_4.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 direction = vec2(0.0,-1.0);
+uniform float speed_scale = 0.03;
+
+void fragment()
+{
+
+     vec2 move = direction * TIME * speed_scale;
+
+     COLOR = texture(TEXTURE, UV + move);   
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/direction = Vector2( 0, -1 )
+shader_param/speed_scale = 0.03
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+enemy_scene = ExtResource( 3 )
+enemy_of_wave_scene = ExtResource( 6 )
+
+[node name="Background" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 6000, 6000 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -3.496
+autoplay = true
+
+[node name="SpawnEnemiesTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="UI" parent="." instance=ExtResource( 5 )]
+
+[node name="SpawnAutoIncreaseTimer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="BoundsAsteroids" type="Node" parent="."]
+
+[node name="Asteroid_1" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 365, 1549 )
+collision_layer = 1
+
+[node name="Asteroid_2" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 354, 654 )
+collision_layer = 1
+
+[node name="Asteroid_3" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 362, 1095 )
+collision_layer = 1
+
+[node name="Asteroid_4" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 359, 216 )
+collision_layer = 1
+
+[node name="Asteroid_5" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 372, 3325 )
+collision_layer = 1
+
+[node name="Asteroid_6" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 361, 2430 )
+collision_layer = 1
+
+[node name="Asteroid_7" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 369, 2871 )
+collision_layer = 1
+
+[node name="Asteroid_8" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 366, 1992 )
+collision_layer = 1
+
+[node name="Asteroid_9" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 349, 5074 )
+collision_layer = 1
+
+[node name="Asteroid_10" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 338, 4179 )
+collision_layer = 1
+
+[node name="Asteroid_11" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 346, 4620 )
+collision_layer = 1
+
+[node name="Asteroid_12" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 343, 3741 )
+collision_layer = 1
+
+[node name="Asteroid_13" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 780, 5957 )
+collision_layer = 1
+
+[node name="Asteroid_14" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 345, 5955 )
+collision_layer = 1
+
+[node name="Asteroid_15" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 1226, 5961 )
+collision_layer = 1
+
+[node name="Asteroid_31" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 1670, 5965 )
+collision_layer = 1
+
+[node name="Asteroid_32" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 2116, 5969 )
+collision_layer = 1
+
+[node name="Asteroid_33" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 2543, 5965 )
+collision_layer = 1
+
+[node name="Asteroid_34" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 2989, 5969 )
+collision_layer = 1
+
+[node name="Asteroid_35" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 3433, 5973 )
+collision_layer = 1
+
+[node name="Asteroid_45" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 4314, 5973 )
+collision_layer = 1
+
+[node name="Asteroid_46" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 4760, 5977 )
+collision_layer = 1
+
+[node name="Asteroid_47" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 5204, 5981 )
+collision_layer = 1
+
+[node name="Asteroid_48" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 4296, 86 )
+collision_layer = 1
+
+[node name="Asteroid_49" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 4742, 90 )
+collision_layer = 1
+
+[node name="Asteroid_50" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 5186, 94 )
+collision_layer = 1
+
+[node name="Asteroid_36" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 3879, 5977 )
+collision_layer = 1
+
+[node name="Asteroid_37" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 753, 79 )
+collision_layer = 1
+
+[node name="Asteroid_38" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 1199, 83 )
+collision_layer = 1
+
+[node name="Asteroid_39" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 1643, 87 )
+collision_layer = 1
+
+[node name="Asteroid_40" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 2089, 91 )
+collision_layer = 1
+
+[node name="Asteroid_41" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 2516, 87 )
+collision_layer = 1
+
+[node name="Asteroid_42" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 2962, 91 )
+collision_layer = 1
+
+[node name="Asteroid_43" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 3406, 95 )
+collision_layer = 1
+
+[node name="Asteroid_44" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 3859, 85 )
+collision_layer = 1
+
+[node name="Asteroid_16" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 350, 5517 )
+collision_layer = 1
+
+[node name="Asteroid_17" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 5670, 1421 )
+collision_layer = 1
+
+[node name="Asteroid_18" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 5659, 526 )
+collision_layer = 1
+
+[node name="Asteroid_19" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 5667, 967 )
+collision_layer = 1
+
+[node name="Asteroid_20" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 5622, 90 )
+collision_layer = 1
+
+[node name="Asteroid_21" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 5677, 3197 )
+collision_layer = 1
+
+[node name="Asteroid_22" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 5666, 2302 )
+collision_layer = 1
+
+[node name="Asteroid_23" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 5674, 2743 )
+collision_layer = 1
+
+[node name="Asteroid_24" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 5671, 1864 )
+collision_layer = 1
+
+[node name="Asteroid_25" parent="BoundsAsteroids" instance=ExtResource( 10 )]
+position = Vector2( 5654, 4946 )
+collision_layer = 1
+
+[node name="Asteroid_26" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 5643, 4051 )
+collision_layer = 1
+
+[node name="Asteroid_27" parent="BoundsAsteroids" instance=ExtResource( 9 )]
+position = Vector2( 5651, 4492 )
+collision_layer = 1
+
+[node name="Asteroid_28" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 5648, 3613 )
+collision_layer = 1
+
+[node name="Asteroid_29" parent="BoundsAsteroids" instance=ExtResource( 8 )]
+position = Vector2( 5642, 5804 )
+collision_layer = 1
+
+[node name="Asteroid_30" parent="BoundsAsteroids" instance=ExtResource( 11 )]
+position = Vector2( 5655, 5389 )
+collision_layer = 1
+
+[connection signal="death" from="Player" to="UI" method="_on_Player_death"]
+[connection signal="pause" from="Player" to="UI" method="_on_Player_pause"]
+[connection signal="restart" from="Player" to="." method="_on_Player_restart"]
+[connection signal="restart" from="Player" to="UI" method="_on_Player_restart"]
+[connection signal="timeout" from="SpawnEnemiesTimer" to="." method="_on_SpawnEnemiesTimer_timeout"]
+[connection signal="restart" from="UI" to="." method="_on_UI_restart"]
+[connection signal="restart" from="UI" to="Player" method="_on_UI_restart"]
+[connection signal="timeout" from="SpawnAutoIncreaseTimer" to="." method="_on_SpawnAutoIncreaseTimer_timeout"]

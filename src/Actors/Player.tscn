@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/art/characters/ufoBlue_hit_0.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/characters/ufoBlue_idle_0.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/characters/ufoBlue_hit_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/characters/ufoBlue_idle_1.png" type="Texture" id=4]
+[ext_resource path="res://src/Actors/Player.gd" type="Script" id=5]
+[ext_resource path="res://src/UI/HealthDisplay.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "hit",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 48.0
+
+[node name="Player" type="Area2D"]
+collision_mask = 30
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="StartingPosition" type="Position2D" parent="."]
+
+[node name="Weapon1Timer" type="Timer" parent="."]
+__meta__ = {
+"_editor_description_": "Timer for Weapon 1"
+}
+
+[node name="RightMuzzle" type="Position2D" parent="."]
+position = Vector2( 51, 0 )
+
+[node name="LeftMuzzle" type="Position2D" parent="."]
+position = Vector2( -49, -1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="HealthDisplay" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 67 )
+scale = Vector2( 0.5, 0.5 )
+
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Player_body_exited"]
+[connection signal="timeout" from="Weapon1Timer" to="." method="_on_Weapon1Timer_timeout"]

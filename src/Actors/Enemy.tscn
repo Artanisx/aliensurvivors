@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/art/enemies/enemy_idle_2.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/enemies/enemy_idle_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/enemies/enemy_idle_3.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/enemies/enemy_idle_0.png" type="Texture" id=4]
+[ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=5]
+[ext_resource path="res://assets/audio/sfx/Enemy_Hurt.wav" type="AudioStream" id=6]
+[ext_resource path="res://src/UI/FCTManager.tscn" type="PackedScene" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "moving",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 27
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "moving"
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="ResetTint" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="FCTManager" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -40 )
+
+[connection signal="timeout" from="ResetTint" to="." method="_on_ResetTint_timeout"]
