@@ -4,15 +4,17 @@ signal hit
 signal pause
 signal death
 signal restart
+signal level_up(player_speed, player_max_health, w1_rate_of_fire, w1_projectiles, w1_duration, w1_crit_chance, w1_damage)
 
 # Player Stats
-export (int) var playerSpeed = 500
-export (int) var playerHealth = max_health
+var playerSpeed = 500
+var playerHealth = 500
 var playerExperience = 0
 var playerLevel = 0
-var exp_per_crystal = 1
+var exp_per_crystal = 5
 var exp_per_level = 5
-const max_health = 500
+var max_health = base_max_health
+const base_max_health = 500
 
 # Player velocity vector
 var velocity = Vector2()
@@ -230,23 +232,21 @@ func _on_Player_area_entered(area):
 		yield(area.get_node("LootSound"), "finished")		
 		area.queue_free()
 
-func level_up():		
-	playerLevel += 1
+func level_up():			
+	#Emute a level up signal passing all current values, letting the HUD figure it out
+	emit_signal("level_up", playerSpeed, max_health, $Weapon1Timer.wait_time, w1_projectiles, w1_duration, w1_crit_chance, w1_damage)	
+	playerLevel += 1	
 	ui.update_level_label(playerLevel)
-	playerSpeed += 100
-	if ($Weapon1Timer.wait_time >= 0.1):
-		$Weapon1Timer.wait_time -= 0.1  	
-	w1_projectiles += 1
-	w1_duration += 0.25
-	w1_crit_chance += 0.05
-	w1_damage += 0.05
 
 func restart_player():
 	print("Restarting the player")
 	# reset player levels and experience
 	# Player Stats
 	playerSpeed = 500
+	max_health = base_max_health
 	playerHealth = max_health
+	$HealthDisplay.reset_max_health(max_health)
+	$HealthDisplay.update_healthbar(playerHealth)	
 	playerExperience = 0
 	playerLevel = 0	
 			
@@ -269,3 +269,24 @@ func restart_player():
 
 func _on_UI_restart():
 	restart_player()
+
+func _on_UI_power_up_selected(player_speed, player_max_health, w1_rate_of_fire, w1_projectiles, w1_duration, w1_crit_chance, w1_damage):
+	self.playerSpeed = player_speed
+	
+	if (player_max_health > self.max_health ):	#as an extra bonus, if we powered up max health get a full heal
+		self.max_health = player_max_health
+		self.playerHealth = max_health
+		# update the HUD healthbar accordingly
+		$HealthDisplay.reset_max_health(max_health)
+		$HealthDisplay.update_healthbar(playerHealth)		
+	
+	self.w1_rate_of_fire = w1_rate_of_fire
+	$Weapon1Timer.wait_time = w1_rate_of_fire
+	self.w1_projectiles = w1_projectiles
+	self.w1_duration = w1_duration
+	self.w1_crit_chance = w1_crit_chance
+	self.w1_damage = w1_damage
+	
+	var format_string = "Powering up speed: %d - health: %d - rateoffire: %d  - projectiles: %d - druation: %d - critchance: %d - damage: %d."
+	var actual_string = format_string % [self.playerSpeed, self.max_health, self.w1_rate_of_fire, self.w1_projectiles, self.w1_duration, self.w1_crit_chance, self.w1_damage]
+	print(actual_string)	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/PausePopup.gd" type="Script" id=2]
@@ -6,14 +6,17 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0745098, 0.556863, 0.364706, 1 )
 
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.584314, 0.294118, 0.776471, 1 )
+
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
 
 [node name="TimerLabel" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -56.0
-margin_bottom = 14.0
+margin_left = -90.0
+margin_bottom = 25.0
 text = "00:00:00"
 align = 2
 
@@ -21,7 +24,7 @@ align = 2
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
+margin_top = -25.0
 custom_colors/font_color = Color( 0, 1, 0.0509804, 1 )
 max_value = 10.0
 step = 1.0
@@ -65,5 +68,56 @@ margin_right = 31.5
 margin_bottom = 10.0
 text = "RESUME"
 
+[node name="LevelUpPopup" type="PopupDialog" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -214.0
+margin_top = -159.0
+margin_right = 214.0
+margin_bottom = 159.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 40.0
+margin_bottom = -40.0
+
+[node name="Label" type="Label" parent="LevelUpPopup/VBoxContainer"]
+margin_right = 428.0
+margin_bottom = 25.0
+text = "LEVEL UP!"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="LevelUpPopup/VBoxContainer"]
+margin_top = 33.0
+margin_right = 428.0
+margin_bottom = 58.0
+text = "Select your power up!"
+align = 1
+valign = 1
+
+[node name="PowerUpButton1" type="Button" parent="LevelUpPopup/VBoxContainer"]
+margin_top = 66.0
+margin_right = 428.0
+margin_bottom = 103.0
+
+[node name="PowerUpButton2" type="Button" parent="LevelUpPopup/VBoxContainer"]
+margin_top = 111.0
+margin_right = 428.0
+margin_bottom = 148.0
+
+[node name="PowerUpButton3" type="Button" parent="LevelUpPopup/VBoxContainer"]
+margin_top = 156.0
+margin_right = 428.0
+margin_bottom = 193.0
+
 [connection signal="asked_for_resume" from="PausePopup" to="." method="_on_PausePopup_asked_for_resume"]
 [connection signal="pressed" from="PausePopup/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="LevelUpPopup/VBoxContainer/PowerUpButton1" to="." method="_on_PowerUpButton1_pressed"]
+[connection signal="pressed" from="LevelUpPopup/VBoxContainer/PowerUpButton2" to="." method="_on_PowerUpButton2_pressed"]
+[connection signal="pressed" from="LevelUpPopup/VBoxContainer/PowerUpButton3" to="." method="_on_PowerUpButton3_pressed"]

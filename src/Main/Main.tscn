@@ -262,10 +262,12 @@ position = Vector2( 5655, 5389 )
 collision_layer = 1
 
 [connection signal="death" from="Player" to="UI" method="_on_Player_death"]
+[connection signal="level_up" from="Player" to="UI" method="_on_Player_level_up"]
 [connection signal="pause" from="Player" to="UI" method="_on_Player_pause"]
 [connection signal="restart" from="Player" to="." method="_on_Player_restart"]
 [connection signal="restart" from="Player" to="UI" method="_on_Player_restart"]
 [connection signal="timeout" from="SpawnEnemiesTimer" to="." method="_on_SpawnEnemiesTimer_timeout"]
+[connection signal="power_up_selected" from="UI" to="Player" method="_on_UI_power_up_selected"]
 [connection signal="restart" from="UI" to="." method="_on_UI_restart"]
 [connection signal="restart" from="UI" to="Player" method="_on_UI_restart"]
 [connection signal="timeout" from="SpawnAutoIncreaseTimer" to="." method="_on_SpawnAutoIncreaseTimer_timeout"]

@@ -14,6 +14,9 @@ func _ready():
 func _process(_delta):
 	global_rotation = 0
 	
+func reset_max_health(value):
+	healthbar.max_value = value
+	
 func update_healthbar(value):
 	healthbar.texture_progress = bar_green
 	
