@@ -80,7 +80,7 @@ func get_input():
 		velocity.y -= 1
 		
 	if Input.is_action_pressed("ui_select"):
-		emit_signal("pause")		
+		emit_signal("pause")	#(player_speed, player_max_health, w1_rate_of_fire, w1_projectiles, w1_duration, w1_crit_chance, w1_damage)	
 		
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * playerSpeed

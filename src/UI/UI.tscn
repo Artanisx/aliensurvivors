@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/PausePopup.gd" type="Script" id=2]
@@ -8,6 +8,9 @@ bg_color = Color( 0.0745098, 0.556863, 0.364706, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.584314, 0.294118, 0.776471, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.447059, 0.607843, 0.945098, 1 )
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -50,10 +53,10 @@ script = ExtResource( 2 )
 [node name="PopupLabel" type="Label" parent="PausePopup"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -25.5
+margin_left = -44.0
 margin_top = 20.0
-margin_right = 25.5
-margin_bottom = 14.0
+margin_right = 44.0
+margin_bottom = 25.0
 text = "PAUSED"
 align = 1
 
@@ -62,10 +65,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -31.5
-margin_top = -10.0
-margin_right = 31.5
-margin_bottom = 10.0
+margin_left = -57.5
+margin_top = -18.5
+margin_right = 57.5
+margin_bottom = 18.5
 text = "RESUME"
 
 [node name="LevelUpPopup" type="PopupDialog" parent="."]
@@ -79,6 +82,45 @@ margin_top = -159.0
 margin_right = 214.0
 margin_bottom = 159.0
 custom_styles/panel = SubResource( 2 )
+
+[node name="StatPanel" type="Panel" parent="LevelUpPopup"]
+margin_left = -379.0
+margin_top = -50.0
+margin_right = -39.0
+margin_bottom = 390.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpPopup/StatPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LevelUpPopup/StatPanel/VBoxContainer"]
+margin_right = 340.0
+margin_bottom = 404.0
+bbcode_enabled = true
+bbcode_text = "Character Stats
+ [img]res://assets/art/characters/ufoBlue_hit_0.png[/img]
+ [color=yellow][b]Player Max Health:[/b][/color] 500
+ [color=yellow][b]Player Speed:[/b][/color] 300
+Weapon  Stats
+ [img]res://assets/art/projectiles/laserRed01.png[/img]
+ [color=yellow][b]Weapon 1 RoF:[/b][/color] 1
+ [color=yellow][b]Weapon 1 Projectiles:[/b][/color] 1
+ [color=yellow][b]Weapon 1 Duration:[/b][/color] 1
+ [color=yellow][b]Weapon 1 Crit Chance:[/b][/color] 1%
+ [color=yellow][b]Weapon 1 Damage:[/b][/color] 1"
+text = "Character Stats
+ 
+ Player Max Health: 500
+ Player Speed: 300
+Weapon  Stats
+ 
+ Weapon 1 RoF: 1
+ Weapon 1 Projectiles: 1
+ Weapon 1 Duration: 1
+ Weapon 1 Crit Chance: 1%
+ Weapon 1 Damage: 1"
+fit_content_height = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUpPopup"]
 anchor_right = 1.0

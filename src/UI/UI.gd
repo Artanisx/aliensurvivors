@@ -130,6 +130,9 @@ func _on_Player_level_up(player_speed, player_max_health, w1_rate_of_fire, w1_pr
 	$LevelUpPopup/VBoxContainer/PowerUpButton2.text = button2_text
 	$LevelUpPopup/VBoxContainer/PowerUpButton3.text = button3_text
 	
+	# Set stats for StatPopup
+	update_stat_panel()
+	
 	# Show
 	$LevelUpPopup.show()
 	
@@ -219,6 +222,21 @@ func set_power_up_button(selection):
 			#SUPER POWER UP WEAPON
 			$LevelUpPopup.hide()
 			get_tree().paused = false # Restore from pause
+
+func update_stat_panel():
+	var text = "[u]Character Stats[/u]\n"
+	text += "[img]res://assets/art/characters/ufoBlue_hit_0.png[/img]\n"	
+	text += "[color=yellow][b]Player Max Health:[/b][/color] " + str(player_player_max_health) + "\n"
+	text += "[color=yellow][b]Player Speed:[/b][/color] " + str(player_player_speed) + "\n"
+	text += "\n[u]Weapon Stats[/u]\n"
+	text += "[img]res://assets/art/projectiles/laserRed01.png[/img]\n"
+	text += "[color=yellow][b]Weapon 1 RoF:[/b][/color] " + str(player_w1_rate_of_fire) + "\n"
+	text += "[color=yellow][b]Weapon 1 Projectiles:[/b][/color] " + str(player_w1_projectiles) + "\n"
+	text += "[color=yellow][b]Weapon 1 Duration:[/b][/color] " + str(player_w1_rate_of_fire) + "\n"
+	text += "[color=yellow][b]Weapon 1 Crit Chance:[/b][/color] " + str(player_w1_crit_chance*100) + "%\n"
+	text += "[color=yellow][b]Weapon 1 Damage:[/b][/color] " + str(player_w1_damage) + "\n"	
+	
+	$LevelUpPopup/StatPanel/VBoxContainer/RichTextLabel.bbcode_text = text
 
 func _on_PowerUpButton1_pressed():
 	set_power_up_button(button1_selection)	

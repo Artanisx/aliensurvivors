@@ -7,4 +7,4 @@ func _process(delta):
 
 func get_input():
 	if Input.is_action_pressed("ui_enter"):
-		emit_signal("asked_for_resume")
+		emit_signal("asked_for_resume")	
