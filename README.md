@@ -64,7 +64,7 @@ Background Music is "Homeroad" from [Kai Engel](https://freemusicarchive.org/mus
 
 [Godot Docs](https://docs.godotengine.org/en/stable/)
 
-[GDQuest](gdquest.mavenseed.com/)
+[GDQuest](https://gdquest.mavenseed.com/)
 
 [Kids Can Code](https://kidscancode.org)
 
