@@ -171,7 +171,7 @@ func load_player() -> void:
 	var error := file.open_encrypted_with_pass (SAVE_VAR, File.READ, "dioMaialinoCoraggioso")
 	
 	if not error == OK:
-		print("Could not load file at $s" % SAVE_VAR)
+		print("Could not load file at " + str(SAVE_VAR))
 		return
 		
 	# Player Stats

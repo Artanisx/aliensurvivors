@@ -276,6 +276,9 @@ func _on_Player_load_game(file):
 	# Close the file
 	file.close()
 	
+	# As customary for roguelikes, if you load the savegame is destroyed
+	destroy_savegame()
+	
 	# Do what is needed
 	$SpawnEnemiesTimer.wait_time = starting_spawn_time
 	if (spawn_level == 5):
@@ -285,3 +288,8 @@ func _on_Player_load_game(file):
 	$UI.update_seconds_since_start(seconds_since_start)
 		
 	print("Finished load main things.")				
+	
+func destroy_savegame():
+	var file:= File.new()
+	file.open(SAVE_VAR, File.WRITE)
+	file.store_line(var2str("NOPE"))
