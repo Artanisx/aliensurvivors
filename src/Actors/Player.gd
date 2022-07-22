@@ -140,7 +140,7 @@ func save_player() -> void:
 	#file.open(SAVE_VAR, File.WRITE)
 	file.open_encrypted_with_pass (SAVE_VAR, File.WRITE, "dioMaialinoCoraggioso")
 	
-	# Save what we need to save		
+	# Save what we need to save	 (order is important, or loading won't work)	
 	
 	# Player Stats
 	file.store_line(var2str(playerSpeed))
