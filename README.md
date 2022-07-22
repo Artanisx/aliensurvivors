@@ -1,5 +1,6 @@
 # Alien Survivors
 A godot prototype to learn the engine.
+![Alien Survivor v0.8-alpha Linux screenshot](/img/as_v08_linux.jpg)
 
 ## Goal of the game
 Survive as long as you can, killing enemies and powering yourself up and selecting the upgrades you choose.
