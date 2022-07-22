@@ -39,3 +39,40 @@ If you are REALLY lucky, you can also find a **Weapon Super Power Up** which wil
 **ESC** to restart the game.
 
 
+## Copyright Notes
+
+**ART AND MEDIA**
+
+Player and Enemy sprites are from [Kenney](https://kenney.itch.io/).
+
+Space Background is from [Coding Kaiju](https://www.codingkaiju.com)
+
+Laser sprite is from [Kids Can Code](https://kidscancode.org)
+
+SFX are created by me with [Bfxr](https://www.bfxr.net/).
+
+Background Music is "Homeroad" from [Kai Engel](https://freemusicarchive.org/music/Kai_Engel/Satin_1564/Kai_Engel_-_Satin_-_09_Homeroad/) 
+
+**PLUGINS AND SOFTWARE**
+
+[Godot Engine](https://godotengine.org/)
+
+[Godot Git Plugin](https://github.com/godotengine/godot-git-plugin/releases)
+
+**REFERENCES**
+
+[Godot Docs](https://docs.godotengine.org/en/stable/)
+
+[GDQuest](gdquest.mavenseed.com/)
+
+[Kids Can Code](https://kidscancode.org)
+
+[Coding Kaiju](https://www.codingkaiju.com)
+
+[r/godot](https://old.reddit.com/r/godot/)
+
+**HEAVILY INSPIRED FROM**
+
+[Vampire Survivors](https://store.steampowered.com/app/1794680/Vampire_Survivors/)
+
+
