@@ -137,7 +137,8 @@ func load_game():
 func save_player() -> void:
 	# Open a file
 	var file:= File.new()
-	file.open(SAVE_VAR, File.WRITE)
+	#file.open(SAVE_VAR, File.WRITE)
+	file.open_encrypted_with_pass (SAVE_VAR, File.WRITE, "dioMaialinoCoraggioso")
 	
 	# Save what we need to save		
 	
@@ -166,7 +167,8 @@ func save_player() -> void:
 func load_player() -> void:
 	#Open a file
 	var file := File.new()
-	var error := file.open(SAVE_VAR, File.READ)
+	#var error := file.open(SAVE_VAR, File.READ)
+	var error := file.open_encrypted_with_pass (SAVE_VAR, File.READ, "dioMaialinoCoraggioso")
 	
 	if not error == OK:
 		print("Could not load file at $s" % SAVE_VAR)
