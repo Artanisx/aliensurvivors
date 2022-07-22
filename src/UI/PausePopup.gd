@@ -2,7 +2,7 @@ extends PopupDialog
 
 signal asked_for_resume
 
-func _process(delta):
+func _process(_delta):
 	get_input()
 
 func get_input():

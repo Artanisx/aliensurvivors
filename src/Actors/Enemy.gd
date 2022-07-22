@@ -18,7 +18,7 @@ func _ready():
 func _physics_process(delta):
 	movement(delta)	
 
-func movement(delta):
+func movement(_delta):
 	# Chase player
 	velocity = Vector2.ZERO
 	

@@ -33,8 +33,8 @@ func _process(delta):
 	seconds_since_start += delta
 	increase_spawns(int(seconds_since_start))	
 	
-func increase_spawns(seconds_since_start):
-	match seconds_since_start:
+func increase_spawns(sec_since_start):
+	match sec_since_start:
 		10:	
 			if (spawn_level == 0):		
 				$SpawnEnemiesTimer.wait_time -= starting_spawn_time/10	
@@ -245,7 +245,7 @@ func _on_Player_load_game(file):
 	
 	if (enemies > 0):
 		# spawn an enemy for each enemy
-		for i in range(enemies):
+		for _i in range(enemies):
 			var enemy_position = str2var(file.get_line())
 			var enemy_health =  str2var(file.get_line())
 			
@@ -262,7 +262,7 @@ func _on_Player_load_game(file):
 	
 	if (items > 0):
 		# spawn a crystal item for each
-		for i in range (items):
+		for _i in range (items):
 			var item_position = str2var(file.get_line())
 			# spawn a crystal with this
 			var new_crystal = exp_crystal_scene.instance()
@@ -291,5 +291,5 @@ func _on_Player_load_game(file):
 	
 func destroy_savegame():
 	var file:= File.new()
-	file.open(SAVE_VAR, File.WRITE)
+	var _error = file.open(SAVE_VAR, File.WRITE)
 	file.store_line(var2str("NOPE"))

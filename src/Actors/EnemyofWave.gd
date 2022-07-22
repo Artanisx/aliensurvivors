@@ -17,7 +17,7 @@ func _ready():
 	$Lifetime.wait_time = 10	#after tot sevonds an enemy par tof a spawn will die
 	$Lifetime.start()
 		
-func movement(delta):		
+func movement(_delta):		
 	velocity = direction * enemySpeed 
 	velocity = move_and_slide(velocity)
 

@@ -138,7 +138,7 @@ func save_player() -> void:
 	# Open a file
 	var file:= File.new()
 	#file.open(SAVE_VAR, File.WRITE)
-	file.open_encrypted_with_pass (SAVE_VAR, File.WRITE, "dioMaialinoCoraggioso")
+	var _error = file.open_encrypted_with_pass (SAVE_VAR, File.WRITE, "dioMaialinoCoraggioso")
 	
 	# Save what we need to save	 (order is important, or loading won't work)	
 	
@@ -370,22 +370,22 @@ func restart_player():
 func _on_UI_restart():
 	restart_player()
 
-func _on_UI_power_up_selected(player_speed, player_max_health, w1_rate_of_fire, w1_projectiles, w1_duration, w1_crit_chance, w1_damage):
-	self.playerSpeed = player_speed
+func _on_UI_power_up_selected(p_speed, p_max_health, w1_r_of_fire, w1_proj, w1_dur, w1_crit, w1_dmg):
+	self.playerSpeed = p_speed
 	
-	if (player_max_health > self.max_health ):	#as an extra bonus, if we powered up max health get a full heal
-		self.max_health = player_max_health
+	if (p_max_health > self.max_health ):	#as an extra bonus, if we powered up max health get a full heal
+		self.max_health = p_max_health
 		self.playerHealth = max_health
 		# update the HUD healthbar accordingly
 		$HealthDisplay.reset_max_health(max_health)
 		$HealthDisplay.update_healthbar(playerHealth)		
 	
-	self.w1_rate_of_fire = w1_rate_of_fire
-	$Weapon1Timer.wait_time = w1_rate_of_fire
-	self.w1_projectiles = w1_projectiles
-	self.w1_duration = w1_duration
-	self.w1_crit_chance = w1_crit_chance
-	self.w1_damage = w1_damage
+	self.w1_rate_of_fire = w1_r_of_fire
+	$Weapon1Timer.wait_time = w1_r_of_fire
+	self.w1_projectiles = w1_proj
+	self.w1_duration = w1_dur
+	self.w1_crit_chance = w1_crit
+	self.w1_damage = w1_dmg
 	
 	var format_string = "Powering up speed: %d - health: %d - rateoffire: %d  - projectiles: %d - druation: %d - critchance: %d - damage: %d."
 	var actual_string = format_string % [self.playerSpeed, self.max_health, self.w1_rate_of_fire, self.w1_projectiles, self.w1_duration, self.w1_crit_chance, self.w1_damage]
