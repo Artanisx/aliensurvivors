@@ -4,6 +4,8 @@ signal hit
 signal pause
 signal death
 signal restart
+signal save_game(file)
+signal load_game(file)
 signal level_up(player_speed, player_max_health, w1_rate_of_fire, w1_projectiles, w1_duration, w1_crit_chance, w1_damage)
 
 # Player Stats
@@ -11,8 +13,8 @@ var playerSpeed = 500
 var playerHealth = 500
 var playerExperience = 0
 var playerLevel = 0
-var exp_per_crystal = 1
-var exp_per_level = 5
+export var exp_per_crystal = 1
+export var exp_per_level = 5
 var max_health = base_max_health
 const base_max_health = 500
 
@@ -41,8 +43,12 @@ var world_position
 # nodes
 var ui
 
+const SAVE_VAR := "user://sav1.sav"
+
 # DEBUGGING
 const max_zoom_out = 10
+export var god_mode = false
+export var infinite_damage = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -109,7 +115,91 @@ func get_input():
 			
 	if Input.is_action_just_released("ui_cancel"):	
 		emit_signal("restart")
+		
+	if Input.is_action_just_released("save"):
+		save_game()		
+		
+	if Input.is_action_just_released("load"):
+		load_game()		
 	
+func save_game():
+	print("Save request sent from Player...")
+	
+	# Save all player statuses
+	save_player()
+	
+func load_game():
+	print("Load request sent from Player...")
+	
+	# Load all player statuses
+	load_player()
+	
+func save_player() -> void:
+	# Open a file
+	var file:= File.new()
+	file.open(SAVE_VAR, File.WRITE)
+	
+	# Save what we need to save		
+	
+	# Player Stats
+	file.store_line(var2str(playerSpeed))
+	file.store_line(var2str(playerHealth))
+	file.store_line(var2str(playerExperience))
+	file.store_line(var2str(playerLevel))
+	file.store_line(var2str(max_health))
+	
+	# Player position
+	file.store_line(var2str(position))
+	
+	# Weapon Stats
+	file.store_line(var2str(w1_rate_of_fire))
+	file.store_line(var2str(w1_projectiles))
+	file.store_line(var2str(w1_duration))
+	file.store_line(var2str(w1_damage))
+	file.store_line(var2str(w1_crit_chance))	
+		
+	print("Saved player.")	
+	
+	# We have saved the player stats, now emit the save_game signal so MAIN can also save what needs to be saved
+	emit_signal("save_game", file)
+
+func load_player() -> void:
+	#Open a file
+	var file := File.new()
+	var error := file.open(SAVE_VAR, File.READ)
+	
+	if not error == OK:
+		print("Could not load file at $s" % SAVE_VAR)
+		return
+		
+	# Player Stats
+	playerSpeed = str2var(file.get_line())
+	playerHealth = str2var(file.get_line())
+	playerExperience = str2var(file.get_line())
+	playerLevel = str2var(file.get_line())
+	max_health = str2var(file.get_line())
+	
+	# Player position
+	position = str2var(file.get_line())
+	
+	# Weapon Stats
+	w1_rate_of_fire = str2var(file.get_line())
+	w1_projectiles = str2var(file.get_line())
+	w1_duration = str2var(file.get_line())
+	w1_damage = str2var(file.get_line())
+	w1_crit_chance = str2var(file.get_line())
+	
+	# update ui
+	ui.update_level_label(playerLevel)
+	ui.update_exp_bar(playerExperience)	
+	$HealthDisplay.reset_max_health(max_health)
+	$HealthDisplay.update_healthbar(playerHealth)	
+		
+	print("Loaded player.")	
+	
+	# We have loaded the player stats, now emit the load_game signal so MAIN can also load what needs to be loaded
+	emit_signal("load_game", file)
+
 func _physics_process(delta):
 	get_input()
 	position += velocity * delta
@@ -136,7 +226,10 @@ func _physics_process(delta):
 		if body.is_in_group("enemies"):
 			damage_player(body)
 			
-func damage_player(node):			
+func damage_player(node):
+	if god_mode:
+		return
+				
 	var damage = node.get_touch_damage()
 	playerHealth -= damage
 	$HealthDisplay.update_healthbar(playerHealth)
@@ -203,11 +296,16 @@ func _on_Weapon1Timer_timeout():
 			if enemy_distance < closest_distance:
 				closest_distance = enemy_distance
 				closest_enemy = enemy
-				print("Found a close enemy")
+				#print("Found a close enemy")
 				
 		# At this point we have the closest_enemy
 		var l = Laser.instance()
-		l.w1_damage = w1_damage	# make sure the laster has the proper damage 
+		
+		if infinite_damage == true:
+			l.w1_damage = 99999
+		else:
+			l.w1_damage = w1_damage	# make sure the laster has the proper damage 
+			
 		l.w1_crit_chance = w1_crit_chance #and crit chance
 		MainNode.add_child(l)
 		l.start($RightMuzzle.global_transform, closest_enemy)

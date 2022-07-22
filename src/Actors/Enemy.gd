@@ -55,4 +55,4 @@ func hit(w1_damage, crit):
 
 func _on_ResetTint_timeout():		
 	# Reset tint
-	$AnimatedSprite.self_modulate = original_tint	
+	$AnimatedSprite.self_modulate = original_tint		

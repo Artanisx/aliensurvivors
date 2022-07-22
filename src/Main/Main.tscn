@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/Props/Asteroid_3.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Props/Asteroid_1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Props/Asteroid_4.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Items/ExperienceCrystal.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -35,6 +36,7 @@ shader_param/speed_scale = 0.03
 script = ExtResource( 1 )
 enemy_scene = ExtResource( 3 )
 enemy_of_wave_scene = ExtResource( 6 )
+exp_crystal_scene = ExtResource( 12 )
 
 [node name="Background" type="Sprite" parent="."]
 material = SubResource( 2 )
@@ -263,9 +265,11 @@ collision_layer = 1
 
 [connection signal="death" from="Player" to="UI" method="_on_Player_death"]
 [connection signal="level_up" from="Player" to="UI" method="_on_Player_level_up"]
+[connection signal="load_game" from="Player" to="." method="_on_Player_load_game"]
 [connection signal="pause" from="Player" to="UI" method="_on_Player_pause"]
 [connection signal="restart" from="Player" to="." method="_on_Player_restart"]
 [connection signal="restart" from="Player" to="UI" method="_on_Player_restart"]
+[connection signal="save_game" from="Player" to="." method="_on_Player_save_game"]
 [connection signal="timeout" from="SpawnEnemiesTimer" to="." method="_on_SpawnEnemiesTimer_timeout"]
 [connection signal="power_up_selected" from="UI" to="Player" method="_on_UI_power_up_selected"]
 [connection signal="restart" from="UI" to="." method="_on_UI_restart"]

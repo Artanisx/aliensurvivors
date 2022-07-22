@@ -22,6 +22,9 @@ signal power_up_selected(player_speed, player_max_health, w1_rate_of_fire, w1_pr
 func _ready():
 	$TimerLabel.text = ""	
 	main = get_node("/root/Main")
+	
+func update_seconds_since_start(seconds):
+	seconds_since_start = seconds
 
 func _process(delta):
 	seconds_since_start += delta
