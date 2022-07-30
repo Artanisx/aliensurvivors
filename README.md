@@ -39,6 +39,8 @@ If you are REALLY lucky, you can also find a **Weapon Super Power Up** which wil
 
 **ESC** to restart the game.
 
+**BACKSPACE** to go back to the main menu.
+
 
 ## Copyright Notes
 
