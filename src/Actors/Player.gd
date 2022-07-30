@@ -7,6 +7,7 @@ signal restart
 signal save_game(file)
 signal load_game(file)
 signal level_up(player_speed, player_max_health, w1_rate_of_fire, w1_projectiles, w1_duration, w1_crit_chance, w1_damage)
+signal go_to_main_menu
 
 # Player Stats
 var playerSpeed = 500
@@ -121,6 +122,9 @@ func get_input():
 		
 	if Input.is_action_just_released("load"):
 		load_game()		
+	
+	if Input.is_action_pressed("BackToMenu"):
+		emit_signal("go_to_main_menu")
 	
 func save_game():
 	print("Save request sent from Player...")

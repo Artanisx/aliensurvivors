@@ -12,6 +12,8 @@ var starting_spawn_time = 2
 var number_of_enemies_per_spawn = number_of_enemies_per_spawn_start
 var spawn_level = 0
 
+onready var _transition_rect := $UI/SceneTransictionRect
+
 const number_of_enemies_per_spawn_start = 1
 const SAVE_VAR := "user://sav1.sav"
 
@@ -293,3 +295,7 @@ func destroy_savegame():
 	var file:= File.new()
 	var _error = file.open(SAVE_VAR, File.WRITE)
 	file.store_line(var2str("NOPE"))
+
+
+func _on_Player_go_to_main_menu():
+	_transition_rect.transition_to("res://src/Ui/MainMenu.tscn")

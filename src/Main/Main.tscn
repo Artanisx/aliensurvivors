@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/Props/Asteroid_1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Props/Asteroid_4.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Items/ExperienceCrystal.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/UI/SceneTransictionRect.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -57,6 +58,8 @@ wait_time = 2.0
 autostart = true
 
 [node name="UI" parent="." instance=ExtResource( 5 )]
+
+[node name="SceneTransictionRect" parent="UI" instance=ExtResource( 13 )]
 
 [node name="SpawnAutoIncreaseTimer" type="Timer" parent="."]
 wait_time = 30.0
@@ -264,6 +267,7 @@ position = Vector2( 5655, 5389 )
 collision_layer = 1
 
 [connection signal="death" from="Player" to="UI" method="_on_Player_death"]
+[connection signal="go_to_main_menu" from="Player" to="." method="_on_Player_go_to_main_menu"]
 [connection signal="level_up" from="Player" to="UI" method="_on_Player_level_up"]
 [connection signal="load_game" from="Player" to="." method="_on_Player_load_game"]
 [connection signal="pause" from="Player" to="UI" method="_on_Player_pause"]
