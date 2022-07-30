@@ -1,4 +1,4 @@
-extends MarginContainer
+extends ColorRect
 
 onready var _transition_rect := $SceneTransictionRect
 
