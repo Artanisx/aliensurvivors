@@ -15,3 +15,5 @@ data_*/
 *.pck
 *.so
 *.import
+*.kra~
+*.png~
