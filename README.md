@@ -53,6 +53,7 @@ Laser sprite is from [Kids Can Code](https://kidscancode.org)
 SFX are created by me with [Bfxr](https://www.bfxr.net/).
 
 Background Music is "Homeroad" from [Kai Engel](https://freemusicarchive.org/music/Kai_Engel/Satin_1564/Kai_Engel_-_Satin_-_09_Homeroad/) 
+Main Menu Music is "Lost in Space" from [HoliznaCC0](https://freemusicarchive.org/music/holiznacc0/lost/lost-in-space-1/)
 
 **PLUGINS AND SOFTWARE**
 
