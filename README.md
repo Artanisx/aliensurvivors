@@ -1,5 +1,6 @@
 # Alien Survivors
 A godot prototype to learn the engine.
+![Alien Survivor v0.92-alpha Main Menu](/img/AlienSurvivors_v092_mainmenu.png)
 ![Alien Survivor v0.8-alpha Linux screenshot](/img/as_v08_linux.jpg)
 
 ## Goal of the game
