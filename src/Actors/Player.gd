@@ -70,6 +70,11 @@ func _ready():
 	# get UI NODE
 	ui = get_node("/root/Main/UI")
 	
+	## CHECK IF WE'RE LOADING A GAME	
+	if Globals.is_game_being_loaded():		
+		print("The main menu requested to load a game.")
+		load_game()
+	
 
 func get_input():
 	velocity = Vector2()

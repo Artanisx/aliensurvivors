@@ -23,7 +23,7 @@ func _init():
 	
 func _ready():
 	$SpawnEnemiesTimer.wait_time = starting_spawn_time
-	randomize()
+	randomize()		
 
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_fullscreen"):
@@ -299,3 +299,7 @@ func destroy_savegame():
 
 func _on_Player_go_to_main_menu():
 	_transition_rect.transition_to("res://src/Ui/MainMenu.tscn")
+
+func _on_Load_Game():
+	print("In main I got the load game signal, I assume, from the main menu")
+	
