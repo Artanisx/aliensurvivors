@@ -4,13 +4,39 @@
 [ext_resource path="res://src/UI/PausePopup.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0745098, 0.556863, 0.364706, 1 )
+bg_color = Color( 0.215686, 0.411765, 0.87451, 0.521569 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0.729412, 1, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.584314, 0.294118, 0.776471, 1 )
+bg_color = Color( 0.584314, 0.294118, 0.776471, 0.772549 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 0.94902, 0, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.447059, 0.607843, 0.945098, 1 )
+bg_color = Color( 0.447059, 0.607843, 0.945098, 0.784314 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -93,6 +119,10 @@ custom_styles/panel = SubResource( 3 )
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUpPopup/StatPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 2.0
+margin_bottom = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LevelUpPopup/StatPanel/VBoxContainer"]
 margin_right = 340.0
@@ -125,11 +155,13 @@ fit_content_height = true
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUpPopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 10.0
 margin_top = 40.0
+margin_right = -10.0
 margin_bottom = -40.0
 
 [node name="Label" type="Label" parent="LevelUpPopup/VBoxContainer"]
-margin_right = 428.0
+margin_right = 408.0
 margin_bottom = 25.0
 text = "LEVEL UP!"
 align = 1
@@ -137,7 +169,7 @@ valign = 1
 
 [node name="Label2" type="Label" parent="LevelUpPopup/VBoxContainer"]
 margin_top = 33.0
-margin_right = 428.0
+margin_right = 408.0
 margin_bottom = 58.0
 text = "Select your power up!"
 align = 1
@@ -145,17 +177,17 @@ valign = 1
 
 [node name="PowerUpButton1" type="Button" parent="LevelUpPopup/VBoxContainer"]
 margin_top = 66.0
-margin_right = 428.0
+margin_right = 408.0
 margin_bottom = 103.0
 
 [node name="PowerUpButton2" type="Button" parent="LevelUpPopup/VBoxContainer"]
 margin_top = 111.0
-margin_right = 428.0
+margin_right = 408.0
 margin_bottom = 148.0
 
 [node name="PowerUpButton3" type="Button" parent="LevelUpPopup/VBoxContainer"]
 margin_top = 156.0
-margin_right = 428.0
+margin_right = 408.0
 margin_bottom = 193.0
 
 [connection signal="asked_for_resume" from="PausePopup" to="." method="_on_PausePopup_asked_for_resume"]
