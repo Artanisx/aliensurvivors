@@ -255,7 +255,8 @@ func _on_Player_load_game(file):
 			var new_enemy = enemy_scene.instance()
 			new_enemy.global_position = enemy_position
 			new_enemy.enemyHealth = enemy_health			
-			add_child(new_enemy)
+			#add_child(new_enemy)
+			call_deferred("add_child", new_enemy)
 			
 			print("loading enemy at " + str(enemy_position) + " and hp: " + str(enemy_health))
 			

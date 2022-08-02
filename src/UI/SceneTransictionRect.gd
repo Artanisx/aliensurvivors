@@ -17,4 +17,7 @@ func transition_to(_next_scene := next_scene_path) -> void:
 	yield(_anim_player, "animation_finished")
 	
 	# Changes the scene
-	get_tree().change_scene(_next_scene)
+	var error = get_tree().change_scene(_next_scene)
+	
+	if error != OK:
+		print("Error while trying to load next scene")

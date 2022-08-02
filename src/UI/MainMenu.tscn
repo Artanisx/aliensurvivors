@@ -82,7 +82,7 @@ texture = ExtResource( 2 )
 margin_top = 584.0
 margin_right = 400.0
 margin_bottom = 640.0
-text = "ver 0.92.alpha
+text = "ver 0.93.alpha
 H.E.I."
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
@@ -109,4 +109,5 @@ autoplay = true
 
 [connection signal="gui_input" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_NewGame_gui_input"]
 [connection signal="gui_input" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Load" to="." method="_on_Load_gui_input"]
+[connection signal="gui_input" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_Options_gui_input"]
 [connection signal="gui_input" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_Quit_gui_input"]
