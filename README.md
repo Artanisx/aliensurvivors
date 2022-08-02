@@ -1,6 +1,7 @@
 # Alien Survivors
 A godot prototype to learn the engine.
-![Alien Survivor v0.8-alpha Linux screenshot](/img/as_v08_linux.jpg)
+![Alien Survivor v0.92-alpha Main Menu](/img/AlienSurvivors_v092_mainmenu.png)
+![Alien Survivor v0.92-alpha Game screenshot](/img/AlienSurvivors_v092_Game.jpg)
 
 ## Goal of the game
 Survive as long as you can, killing enemies and powering yourself up and selecting the upgrades you choose.
@@ -52,6 +53,14 @@ Space Background is from [Coding Kaiju](https://www.codingkaiju.com)
 
 Laser sprite is from [Kids Can Code](https://kidscancode.org)
 
+Shaders for the Main Menu and Game are from [Godot Shaders](https://godotshaders.com/), specifically from [gerardogc2378](https://godotshaders.com/author/gerardogc2378/) and [flytrap](https://godotshaders.com/author/flytrap/) respectively.
+
+Main Menu text elements are created by me with [Krita](https://krita.org/en/).
+
+Font used in the Main Menu is [Ethnocentric Font](https://www.dafont.com/ethnocentric.font)
+
+Font used by in game elements is [Droid Sans](https://fonts.adobe.com/fonts/droid-sans)
+
 SFX are created by me with [Bfxr](https://www.bfxr.net/).
 
 Background Music is "Homeroad" from [Kai Engel](https://freemusicarchive.org/music/Kai_Engel/Satin_1564/Kai_Engel_-_Satin_-_09_Homeroad/) 
@@ -62,6 +71,8 @@ Main Menu Music is "Lost in Space" from [HoliznaCC0](https://freemusicarchive.or
 [Godot Engine](https://godotengine.org/)
 
 [Godot Git Plugin](https://github.com/godotengine/godot-git-plugin/releases)
+
+[Krita](https://krita.org/en/)
 
 **REFERENCES**
 
