@@ -81,7 +81,7 @@ texture = ExtResource( 2 )
 margin_top = 584.0
 margin_right = 400.0
 margin_bottom = 640.0
-text = "ver 0.93.alpha
+text = "ver 0.94.alpha
 H.E.I."
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]

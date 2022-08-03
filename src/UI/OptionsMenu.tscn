@@ -44,3 +44,4 @@ position = Vector2( 433, 286 )
 [node name="DialogueManager" parent="." instance=ExtResource( 8 )]
 
 [connection signal="pressed" from="BackToMenu" to="." method="_on_BackToMenu_pressed"]
+[connection signal="finished" from="DialogueManager" to="." method="_on_DialogueManager_finished"]

@@ -92,9 +92,7 @@ func _hide() -> void:
 	cur_dialogue_instance.queue_free()
 	cur_dialogue_instance = null
 	_is_active = false
-	emit_signal("finished")
-	
-	
+	emit_signal("finished")	
 	
 func _on_message_completed() -> void:
 	emit_signal("message_completed")
