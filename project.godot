@@ -9,12 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://Dialogue.gd"
+}, {
+"base": "Node",
+"class": "DialogueManager",
+"language": "GDScript",
+"path": "res://DialogueManager.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "DialogueVoicePlayer",
+"language": "GDScript",
+"path": "res://src/UI/DialogueVoicePlayer.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 } ]
 _global_script_class_icons={
+"Dialogue": "",
+"DialogueManager": "",
+"DialogueVoicePlayer": "",
 "GitAPI": ""
 }
 

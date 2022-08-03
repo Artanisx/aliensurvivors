@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/art/shaders/StarryBG.gdshader" type="Shader" id=1]
 [ext_resource path="res://assets/art/characters/shipBlue_manned.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/art/ui/Back.png" type="Texture" id=5]
 [ext_resource path="res://src/UI/SceneTransictionRect.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/OptionsMenu.gd" type="Script" id=7]
+[ext_resource path="res://src/UI/DialogueManager.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
@@ -36,5 +37,10 @@ texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 3 )
 
 [node name="SceneTransictionRect" parent="." instance=ExtResource( 6 )]
+
+[node name="DialoguePosition" type="Position2D" parent="."]
+position = Vector2( 433, 286 )
+
+[node name="DialogueManager" parent="." instance=ExtResource( 8 )]
 
 [connection signal="pressed" from="BackToMenu" to="." method="_on_BackToMenu_pressed"]
